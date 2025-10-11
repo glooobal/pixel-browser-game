@@ -1,4 +1,5 @@
 import { Player } from './Player';
+import { ENEMY_COLOR, ENEMY_SIZE, ENEMY_SPAWN_INTERVAL, ENEMY_SPEED_MAX, ENEMY_SPEED_MIN } from '../constants';
 
 export type Enemy = {
   x: number;
@@ -11,14 +12,14 @@ export type Enemy = {
 export const enemies: Enemy[] = [];
 
 export function spawnEnemy(canvasWidth: number, canvasHeight: number) {
-  const size = 20;
   const enemy: Enemy = {
-    x: Math.random() * (canvasWidth - size),
-    y: Math.random() * (canvasHeight - size),
-    w: size,
-    h: size,
-    speed: 0.1 + Math.random() * 0.1
+    x: Math.random() * (canvasWidth - ENEMY_SIZE),
+    y: Math.random() * (canvasHeight - ENEMY_SIZE),
+    w: ENEMY_SIZE,
+    h: ENEMY_SIZE,
+    speed: ENEMY_SPEED_MIN + Math.random() * (ENEMY_SPEED_MAX - ENEMY_SPEED_MIN)
   };
+
   enemies.push(enemy);
 }
 
@@ -36,7 +37,7 @@ export function updateEnemies(enemies: Enemy[], player: Player, delta: number) {
 
 export function drawEnemies(ctx: CanvasRenderingContext2D, enemies: Enemy[]) {
   for (const enemy of enemies) {
-    ctx.fillStyle = 'red';
+    ctx.fillStyle = ENEMY_COLOR;
     ctx.fillRect(enemy.x, enemy.y, enemy.w, enemy.h);
   }
 }

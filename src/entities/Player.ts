@@ -1,4 +1,5 @@
 import { keys } from '../input';
+import { PLAYER_COLOR, PLAYER_HEIGHT, PLAYER_SPEED, PLAYER_WIDTH } from '../constants';
 
 export type Player = {
   x: number;
@@ -12,9 +13,9 @@ export function createPlayer(canvasWidth: number, canvasHeight: number): Player 
   return {
     x: canvasWidth / 2,
     y: canvasHeight / 2,
-    w: 30,
-    h: 30,
-    speed: 0.2
+    w: PLAYER_WIDTH,
+    h: PLAYER_HEIGHT,
+    speed: PLAYER_SPEED
   };
 }
 
@@ -29,6 +30,6 @@ export function updatePlayer(player: Player, delta: number, canvasWidth: number,
 }
 
 export function drawPlayer(ctx: CanvasRenderingContext2D, player: Player) {
-  ctx.fillStyle = 'lime';
+  ctx.fillStyle = PLAYER_COLOR;
   ctx.fillRect(player.x, player.y, player.w, player.h);
 }
