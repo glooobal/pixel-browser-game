@@ -30,10 +30,10 @@ export function createPlayer(canvasWidth: number, canvasHeight: number): Player 
 }
 
 export function updatePlayer(player: Player, delta: number, canvasWidth: number, canvasHeight: number) {
-  if (keys['ArrowUp']) player.y -= player.speed * delta;
-  if (keys['ArrowDown']) player.y += player.speed * delta;
-  if (keys['ArrowLeft']) player.x -= player.speed * delta;
-  if (keys['ArrowRight']) player.x += player.speed * delta;
+  if (keys['ArrowUp'] || keys['w'] || keys['W']) player.y -= player.speed * delta;
+  if (keys['ArrowDown'] || keys['s'] || keys['S']) player.y += player.speed * delta;
+  if (keys['ArrowLeft'] || keys['a'] || keys['A']) player.x -= player.speed * delta;
+  if (keys['ArrowRight'] || keys['d'] || keys['D']) player.x += player.speed * delta;
 
   player.x = Math.max(0, Math.min(canvasWidth - player.w, player.x));
   player.y = Math.max(0, Math.min(canvasHeight - player.h, player.y));
