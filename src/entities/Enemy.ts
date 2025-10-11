@@ -1,5 +1,5 @@
 import { Player } from './Player';
-import { ENEMY_COLOR, ENEMY_SIZE, ENEMY_SPAWN_INTERVAL, ENEMY_SPEED_MAX, ENEMY_SPEED_MIN } from '../constants';
+import { ENEMY_BASE_SIZE, ENEMY_BASE_SPEED, ENEMY_COLOR } from '../constants';
 
 export type Enemy = {
   x: number;
@@ -13,11 +13,11 @@ export const enemies: Enemy[] = [];
 
 export function spawnEnemy(canvasWidth: number, canvasHeight: number) {
   const enemy: Enemy = {
-    x: Math.random() * (canvasWidth - ENEMY_SIZE),
-    y: Math.random() * (canvasHeight - ENEMY_SIZE),
-    w: ENEMY_SIZE,
-    h: ENEMY_SIZE,
-    speed: ENEMY_SPEED_MIN + Math.random() * (ENEMY_SPEED_MAX - ENEMY_SPEED_MIN),
+    x: Math.random() * (canvasWidth - ENEMY_BASE_SIZE),
+    y: Math.random() * (canvasHeight - ENEMY_BASE_SIZE),
+    w: ENEMY_BASE_SIZE,
+    h: ENEMY_BASE_SIZE,
+    speed: ENEMY_BASE_SPEED,
   };
 
   enemies.push(enemy);

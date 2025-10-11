@@ -2,6 +2,7 @@ import { createPlayer, updatePlayer, drawPlayer, Player } from './entities/Playe
 import { enemies, spawnEnemy, updateEnemies, drawEnemies } from './entities/Enemy';
 import { BG_COLOR, ENEMY_SPAWN_INTERVAL, FRAME_TIME } from './constants';
 import { isColliding } from './utils/collision';
+import { drawUI } from './ui/hud';
 
 const canvas = document.querySelector('canvas')!;
 const ctx = canvas.getContext('2d')!;
@@ -41,7 +42,7 @@ function update(delta: number) {
 
   for (const enemy of enemies) {
     if (isColliding(player, enemy)) {
-      player.hp -= 2;
+      player.hp -= 1;
 
       if (player.hp <= 0) {
         gameOver();
@@ -57,6 +58,7 @@ function draw() {
 
   drawPlayer(ctx, player);
   drawEnemies(ctx, enemies);
+  drawUI(ctx, player);
 }
 
 function loop(time: number) {
