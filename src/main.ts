@@ -1,10 +1,12 @@
 import { createPlayer, updatePlayer, drawPlayer, Player } from './entities/Player';
 import { enemies, spawnEnemy, updateEnemies, drawEnemies } from './entities/Enemy';
 import { BG_COLOR, ENEMY_SPAWN_INTERVAL, FRAME_TIME } from './constants';
+import { isColliding } from './utils/collision';
 
 const canvas = document.querySelector('canvas')!;
 const ctx = canvas.getContext('2d')!;
 
+let gameRunning = true;
 let timeSinceLastSpawn = 0;
 let lastTime = 0;
 let accumulator = 0;
@@ -13,6 +15,12 @@ function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   document.body.style.overflow = 'hidden';
+}
+
+function gameOver() {
+  gameRunning = false;
+  alert('Game Over! Start again :)');
+  window.location.reload();
 }
 
 window.addEventListener('resize', resizeCanvas);
@@ -30,6 +38,17 @@ function update(delta: number) {
   }
 
   updateEnemies(enemies, player, delta);
+
+  for (const enemy of enemies) {
+    if (isColliding(player, enemy)) {
+      player.hp -= 2;
+
+      if (player.hp <= 0) {
+        gameOver();
+        return;
+      }
+    }
+  }
 }
 
 function draw() {
@@ -41,6 +60,8 @@ function draw() {
 }
 
 function loop(time: number) {
+  if (!gameRunning) return;
+
   const delta = time - lastTime;
   lastTime = time;
 
@@ -48,7 +69,7 @@ function loop(time: number) {
 
   while (accumulator >= FRAME_TIME) {
     update(FRAME_TIME);
-    
+
     timeSinceLastSpawn += FRAME_TIME;
     if (timeSinceLastSpawn >= ENEMY_SPAWN_INTERVAL) {
       spawnEnemy(canvas.width, canvas.height);

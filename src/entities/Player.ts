@@ -1,5 +1,5 @@
 import { keys } from '../input';
-import { PLAYER_COLOR, PLAYER_HEIGHT, PLAYER_SPEED, PLAYER_WIDTH } from '../constants';
+import { PLAYER_COLOR, PLAYER_HEIGHT, PLAYER_HP, PLAYER_SPEED, PLAYER_WIDTH } from '../constants';
 
 export type Player = {
   x: number;
@@ -7,6 +7,7 @@ export type Player = {
   w: number;
   h: number;
   speed: number;
+  hp: number;
 };
 
 export function createPlayer(canvasWidth: number, canvasHeight: number): Player {
@@ -15,7 +16,8 @@ export function createPlayer(canvasWidth: number, canvasHeight: number): Player 
     y: canvasHeight / 2,
     w: PLAYER_WIDTH,
     h: PLAYER_HEIGHT,
-    speed: PLAYER_SPEED
+    speed: PLAYER_SPEED,
+    hp: PLAYER_HP,
   };
 }
 

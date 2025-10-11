@@ -17,7 +17,7 @@ export function spawnEnemy(canvasWidth: number, canvasHeight: number) {
     y: Math.random() * (canvasHeight - ENEMY_SIZE),
     w: ENEMY_SIZE,
     h: ENEMY_SIZE,
-    speed: ENEMY_SPEED_MIN + Math.random() * (ENEMY_SPEED_MAX - ENEMY_SPEED_MIN)
+    speed: ENEMY_SPEED_MIN + Math.random() * (ENEMY_SPEED_MAX - ENEMY_SPEED_MIN),
   };
 
   enemies.push(enemy);

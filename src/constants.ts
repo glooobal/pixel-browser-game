@@ -4,6 +4,7 @@ export const FRAME_TIME = 1000 / FPS;
 export const PLAYER_WIDTH = 30;
 export const PLAYER_HEIGHT = 30;
 export const PLAYER_SPEED = 0.2;
+export const PLAYER_HP = 50;
 export const PLAYER_COLOR = 'lime';
 
 export const ENEMY_SIZE = 20;
