@@ -35,7 +35,7 @@ export function updateEnemies(enemies: Enemy[], player: Player, delta: number) {
   }
 }
 
-export function drawEnemies(ctx: CanvasRenderingContext2D, enemies: Enemy[]) {
+export function addEnemies(ctx: CanvasRenderingContext2D, enemies: Enemy[]) {
   for (const enemy of enemies) {
     ctx.fillStyle = ENEMY_COLOR;
     ctx.fillRect(enemy.x, enemy.y, enemy.w, enemy.h);

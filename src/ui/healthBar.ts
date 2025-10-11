@@ -1,7 +1,7 @@
 import { Player } from '../entities/Player';
 import { UI_PLAYER_HP_BAR_WIDTH, UI_PLAYER_HP_BAR_HEIGHT, UI_PLAYER_HP_COLOR, BG_COLOR } from '../constants';
 
-export function drawUI(ctx: CanvasRenderingContext2D, player: Player) {
+export function addHealthBar(ctx: CanvasRenderingContext2D, player: Player) {
   const x = 20;
   const y = 20;
 

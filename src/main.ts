@@ -1,8 +1,8 @@
-import { createPlayer, updatePlayer, drawPlayer, Player } from './entities/Player';
-import { enemies, spawnEnemy, updateEnemies, drawEnemies } from './entities/Enemy';
+import { Player, addPlayer, createPlayer, updatePlayer } from './entities/Player';
+import { enemies, addEnemies, spawnEnemy, updateEnemies } from './entities/Enemy';
 import { BG_COLOR, ENEMY_SPAWN_INTERVAL, FRAME_TIME } from './constants';
 import { isColliding } from './utils/collision';
-import { drawUI } from './ui/hud';
+import { addUI } from './ui/addUI';
 
 const canvas = document.querySelector('canvas')!;
 const ctx = canvas.getContext('2d')!;
@@ -29,7 +29,7 @@ resizeCanvas();
 
 const player: Player = createPlayer(canvas.width, canvas.height);
 
-function update(delta: number) {
+function updateGame(delta: number) {
   updatePlayer(player, delta, canvas.width, canvas.height);
 
   timeSinceLastSpawn += delta;
@@ -52,13 +52,13 @@ function update(delta: number) {
   }
 }
 
-function draw() {
+function createScene() {
   ctx.fillStyle = BG_COLOR;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  drawPlayer(ctx, player);
-  drawEnemies(ctx, enemies);
-  drawUI(ctx, player);
+  addPlayer(ctx, player);
+  addEnemies(ctx, enemies);
+  addUI(ctx, player);
 }
 
 function loop(time: number) {
@@ -70,7 +70,7 @@ function loop(time: number) {
   accumulator += delta;
 
   while (accumulator >= FRAME_TIME) {
-    update(FRAME_TIME);
+    updateGame(FRAME_TIME);
 
     timeSinceLastSpawn += FRAME_TIME;
     if (timeSinceLastSpawn >= ENEMY_SPAWN_INTERVAL) {
@@ -81,7 +81,7 @@ function loop(time: number) {
     accumulator -= FRAME_TIME;
   }
 
-  draw();
+  createScene();
   requestAnimationFrame(loop);
 }
 

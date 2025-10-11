@@ -39,7 +39,7 @@ export function updatePlayer(player: Player, delta: number, canvasWidth: number,
   player.y = Math.max(0, Math.min(canvasHeight - player.h, player.y));
 }
 
-export function drawPlayer(ctx: CanvasRenderingContext2D, player: Player) {
+export function addPlayer(ctx: CanvasRenderingContext2D, player: Player) {
   ctx.fillStyle = PLAYER_COLOR;
   ctx.fillRect(player.x, player.y, player.w, player.h);
 }
