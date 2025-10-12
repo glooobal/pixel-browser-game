@@ -12,7 +12,7 @@ export const ENEMY_BASE_SPEED = 0.1;
 export const ENEMY_SPAWN_INTERVAL = 3000;
 export const ENEMY_COLOR = 'red';
 
-export const UI_PLAYER_HP_BAR_WIDTH = 50;
+export const UI_PLAYER_HP_BAR_WIDTH = 100;
 export const UI_PLAYER_HP_BAR_HEIGHT = 10;
 export const UI_PLAYER_HP_COLOR = 'red';
 

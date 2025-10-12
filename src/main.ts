@@ -1,8 +1,12 @@
 import { Player, addPlayer, createPlayer, updatePlayer } from './entities/Player';
 import { enemies, addEnemies, spawnEnemy, updateEnemies } from './entities/Enemy';
-import { BG_COLOR, ENEMY_SPAWN_INTERVAL, FRAME_TIME } from './constants';
+
+import { addGameTimer } from './ui/gameTimer';
+import { addHealthBar } from './ui/healthBar';
+
 import { isColliding } from './utils/collision';
-import { addUI } from './ui/addUI';
+
+import { BG_COLOR, ENEMY_SPAWN_INTERVAL, FRAME_TIME } from './constants';
 
 const canvas = document.querySelector('canvas')!;
 const ctx = canvas.getContext('2d')!;
@@ -11,6 +15,7 @@ let gameRunning = true;
 let timeSinceLastSpawn = 0;
 let lastTime = 0;
 let accumulator = 0;
+let gameTime = 0;
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -20,7 +25,7 @@ function resizeCanvas() {
 
 function gameOver() {
   gameRunning = false;
-  alert('Game Over! Start again :)');
+  alert('You lost, start again!');
   window.location.reload();
 }
 
@@ -50,6 +55,8 @@ function updateGame(delta: number) {
       }
     }
   }
+
+  gameTime += delta;
 }
 
 function createScene() {
@@ -58,7 +65,8 @@ function createScene() {
 
   addPlayer(ctx, player);
   addEnemies(ctx, enemies);
-  addUI(ctx, player);
+  addHealthBar(ctx, player);
+  addGameTimer(ctx, gameTime, canvas.width);
 }
 
 function loop(time: number) {
