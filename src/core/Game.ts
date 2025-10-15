@@ -3,6 +3,8 @@ import { enemies, spawnEnemy, updateEnemies } from '../entities/Enemy';
 import { isColliding } from '../utils/collision';
 import { ENEMY_SPAWN_INTERVAL } from '../constants';
 
+import { Mage, Ranger, Rogue, Warrior } from '../entities/characters';
+
 export class Game {
   canvas: HTMLCanvasElement;
   player: Player;
@@ -12,7 +14,7 @@ export class Game {
 
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
-    this.player = createPlayer(canvas.width, canvas.height);
+    this.player = createPlayer(canvas.width, canvas.height, new Warrior());
   }
 
   update(delta: number) {

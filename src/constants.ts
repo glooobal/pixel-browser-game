@@ -3,9 +3,6 @@ export const FRAME_TIME = 1000 / FPS;
 
 export const PLAYER_BASE_WIDTH = 30;
 export const PLAYER_BASE_HEIGHT = 30;
-export const PLAYER_BASE_SPEED = 0.2;
-export const PLAYER_BASE_MAX_HP = 100;
-export const PLAYER_COLOR = 'lime';
 
 export const ENEMY_BASE_SIZE = 20;
 export const ENEMY_BASE_SPEED = 0.1;

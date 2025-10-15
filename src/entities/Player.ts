@@ -1,31 +1,30 @@
 import { keys } from '../input';
-import {
-  PLAYER_BASE_WIDTH,
-  PLAYER_BASE_HEIGHT,
-  PLAYER_BASE_SPEED,
-  PLAYER_BASE_MAX_HP,
-  PLAYER_COLOR,
-} from '../constants';
+import { PLAYER_BASE_WIDTH, PLAYER_BASE_HEIGHT } from '../constants';
+import { Character } from './Character';
 
 export type Player = {
   x: number;
   y: number;
   w: number;
   h: number;
+  color: string;
   speed: number;
-  hp: number;
   maxHp: number;
+  hp: number;
+  character: Character;
 };
 
-export function createPlayer(canvasWidth: number, canvasHeight: number): Player {
+export function createPlayer(canvasWidth: number, canvasHeight: number, character: Character): Player {
   return {
     x: canvasWidth / 2,
     y: canvasHeight / 2,
     w: PLAYER_BASE_WIDTH,
     h: PLAYER_BASE_HEIGHT,
-    speed: PLAYER_BASE_SPEED,
-    hp: PLAYER_BASE_MAX_HP,
-    maxHp: PLAYER_BASE_MAX_HP,
+    color: character.color,
+    speed: character.baseSpeed,
+    maxHp: character.baseHp,
+    hp: character.baseHp,
+    character,
   };
 }
 
@@ -40,6 +39,6 @@ export function updatePlayer(player: Player, delta: number, canvasWidth: number,
 }
 
 export function addPlayer(ctx: CanvasRenderingContext2D, player: Player) {
-  ctx.fillStyle = PLAYER_COLOR;
+  ctx.fillStyle = player.color;
   ctx.fillRect(player.x, player.y, player.w, player.h);
 }
